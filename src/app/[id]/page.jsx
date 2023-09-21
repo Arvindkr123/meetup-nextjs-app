@@ -1,4 +1,5 @@
-import MeetupList from "@/components/meetups/MeetupList";
+"use client";
+import MeetupDetails from "@/components/meetups/MeetupDetails";
 import React from "react";
 
 const DUMMY_MEETUP = [
@@ -28,8 +29,23 @@ const DUMMY_MEETUP = [
   },
 ];
 
-const Home = () => {
-  return <MeetupList meetups={DUMMY_MEETUP} />;
+const DetailMeetup = ({ params }) => {
+  const { id } = params;
+  const item = DUMMY_MEETUP.find((ele) => ele.id === id);
+  console.log(item);
+  if (item) {
+    return (
+      <MeetupDetails
+        key={item.id}
+        id={item.id}
+        image={item.image}
+        title={item.title}
+        address={item.address}
+      />
+    );
+  } else {
+    return <div>Can't find Meetup</div>;
+  }
 };
 
-export default Home;
+export default DetailMeetup;
