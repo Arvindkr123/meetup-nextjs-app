@@ -1,6 +1,6 @@
+"use client"
 import MeetupList from "@/components/meetups/MeetupList";
-import React from "react";
-
+import React, { useState, useEffect } from "react";
 const DUMMY_MEETUP = [
   {
     id: "m1",
@@ -28,8 +28,12 @@ const DUMMY_MEETUP = [
   },
 ];
 
-const Home = () => {
-  return <MeetupList meetups={DUMMY_MEETUP} />;
+const Home = (props) => {
+  const [loadedMeetups, setLoadedMeetups] = useState([]);
+  useEffect(() => {
+    setLoadedMeetups(DUMMY_MEETUP);
+  }, []);
+  return <MeetupList meetups={loadedMeetups} />;
 };
 
 export default Home;
